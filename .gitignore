@@ -44,6 +44,7 @@ data.json
 .venv/
 
 images/
+tree.txt
 
 # React files
 client/node_modules/
