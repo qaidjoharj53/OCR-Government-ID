@@ -1,0 +1,20 @@
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #20c997;
+	color: white;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+.header h1 {
+	letter-spacing: 2px;
+	word-spacing: 10px;
+}
+
+.header_title {
+	font-size: 2em;
+}
