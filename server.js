@@ -12,40 +12,6 @@ const upload = multer({ dest: "uploads/" });
 app.use(cors());
 app.use(express.json());
 
-/* app.post("/upload", upload.single("file"), async (req, res) => {
-	const filePath = path.join(__dirname, req.file.path);
-	const { documentType } = req.body;
-
-	try {
-		// Perform OCR on the uploaded image
-		const ocrResult = await Tesseract.recognize(filePath, "eng");
-		const extractedText = ocrResult.data.text;
-
-		// Log extracted text for debugging
-		// console.log("Extracted Text:", extractedText);
-
-		// Save OCR output to JSON file (optional for debugging)
-		const jsonData = { extractedText };
-		await fs.writeJson("data.json", jsonData);
-
-		// Apply regex based on the document type
-		const extractedInfo = extractDetailsFromText(
-			extractedText,
-			documentType
-		);
-
-		res.json(extractedInfo);
-	} catch (error) {
-		console.error("Error processing file:", error);
-		res.status(500).json({
-			error: "Error processing file",
-			details: error.message,
-		});
-	} finally {
-		await fs.remove(filePath);
-	}
-}); */
-
 // Preprocess image with sharp before OCR
 app.post("/upload", upload.single("file"), async (req, res) => {
 	const filePath = path.join(__dirname, req.file.path);
@@ -74,7 +40,6 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 			extractedText,
 			documentType
 		);
-
 		res.json(extractedInfo);
 	} catch (error) {
 		console.error("Error processing file:", error);
@@ -118,21 +83,6 @@ function extractDetailsFromText(text, documentType) {
 
 	if (documentType === "driving_license") {
 		// Generalized patterns for Driving License
-		/* const dlPatterns = {
-			// Match any name that follows "Name" keyword
-			name: /Name\s*:?©?\s*([A-Z][A-Za-z\s]+?)(?=\s*(?:S\/|D\/|W\/|$|\n))/i,
-
-			// Updated pattern to specifically look for DL NO and capture everything after it until next field
-			documentNumber:
-				/(?:DL\s+NO|License\s+No)\s*©?\s*'?([^:]+?)(?=\s+(?:DOI|$|\n))/i,
-
-			// Match expiration date in common Indian formats
-			expirationDate:
-				/(?:Valid upto|Valid Till|Validity|Expiry)\s*:?\s*(\d{2}-\d{2}-\d{4}|\d{2}-\d{2}\s*-\d{4})/i,
-
-			// Match date of birth in common formats
-			dateOfBirth: /(?:DOB|Date of Birth)\s*:?\s*(\d{2}-\d{2}-\d{4})/i,
-		}; */
 		const dlPatterns = {
 			// Name: capturing uppercase letters and spaces, ending at common delimiters
 			name: /Name\s*[:.-]*©?\s*([A-Z\s]+?)(?=\s*(?:S\/|D\/|W\/|DOB|Date of Birth|BG|,|$|\n))/i,

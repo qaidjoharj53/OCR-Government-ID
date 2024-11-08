@@ -35,7 +35,9 @@ function App() {
 		formData.append("file", file);
 		formData.append("documentType", documentType);
 
+		setError("");
 		setExtractedData({}); // Clear previous data
+		setSelectDocumentType(false);
 		setShowInfo(false);
 		setLoading(true); // Show loader
 
@@ -48,14 +50,13 @@ function App() {
 				}
 			);
 			setExtractedData(response.data);
-			setError(""); // Clear any previous errors
+			setShowInfo(true);
 		} catch (error) {
 			console.error("Error uploading file:", error);
 			setError("Error uploading file. Please try again.");
+			setShowInfo(false);
 		} finally {
 			setLoading(false); // Hide loader after upload
-			setShowInfo(true);
-			setSelectDocumentType(false);
 		}
 	};
 
@@ -197,6 +198,7 @@ function App() {
 						<button
 							onClick={handleUpload}
 							disabled={
+								loading |
 								(documentType === null) |
 								(documentType === "") |
 								(error !== "")
