@@ -53,6 +53,7 @@ Make sure you have the following installed:
     Install the necessary backend and frontend dependencies:
 
     ```bash
+    cd server
     npm install
     ```
 
@@ -61,7 +62,7 @@ Make sure you have the following installed:
     Run the backend server:
 
     ```bash
-    node server.js
+    npm start
     ```
 
     The server will be available at `http://localhost:5000`.
@@ -83,12 +84,11 @@ Make sure you have the following installed:
 Here is an overview of the project directory:
 
 ```
-├── frontend/ # React frontend code
-├── uploads/ # Temporary storage for uploaded files
-├── server.js # Node.js backend server code
-├── package.json # Project metadata and dependencies
-├── README.md # This documentation
-└── .gitignore # Git ignore file
+├── client/
+├── server/
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
 ---
@@ -99,7 +99,7 @@ The web app features simple yet effective UI elements:
 
 -   **File Upload Button**: To upload documents.
 -   **Document Type Dropdown**: Allows users to select the type of document (e.g., Passport, Driving License).
--   **OCR Results Display**: A section that showcases the extracted details (name, document number, expiration date).
+-   **OCR Results Display**: A card that showcases the extracted details (name, document number, expiration date).
 
 ---
 
