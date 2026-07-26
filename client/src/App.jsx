@@ -4,6 +4,10 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import "./App.css";
 
+const API_BASE_URL = (
+	process.env.REACT_APP_API_BASE_URL || "http://localhost:5000"
+).replace(/\/+$/, "");
+
 function App() {
 	const [file, setFile] = useState(null);
 	const [filePreview, setFilePreview] = useState(null); // Temporary URL for image preview
@@ -43,7 +47,7 @@ function App() {
 
 		try {
 			const response = await axios.post(
-				"http://localhost:5000/upload",
+				`${API_BASE_URL}/upload`,
 				formData,
 				{
 					headers: { "Content-Type": "multipart/form-data" },

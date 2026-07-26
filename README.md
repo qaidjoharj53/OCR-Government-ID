@@ -57,7 +57,28 @@ Make sure you have the following installed:
     npm install
     ```
 
-3. **Start the Backend Server**:
+3. **Configure Environment Variables**:
+
+    Create these files before running the app:
+
+    - `server/.env`
+
+     ```env
+     PORT=5000
+     CORS_ORIGINS=http://localhost:3000
+     ```
+
+     - `CORS_ORIGINS` is optional.
+     - If `CORS_ORIGINS` is not set, all origins are allowed.
+     - Use comma-separated values for multiple origins.
+
+    - `client/.env`
+
+     ```env
+     REACT_APP_API_BASE_URL=http://localhost:5000
+     ```
+
+4. **Start the Backend Server**:
 
     Run the backend server:
 
@@ -67,7 +88,7 @@ Make sure you have the following installed:
 
     The server will be available at `http://localhost:5000`.
 
-4. **Run the Frontend**:
+5. **Run the Frontend**:
 
     In a separate terminal, navigate to the frontend directory and start the React app:
 
