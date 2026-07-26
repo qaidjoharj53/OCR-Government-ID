@@ -136,13 +136,7 @@ function App() {
 					<img
 						src={filePreview}
 						alt="Uploaded Document Preview"
-						style={{
-							width: "300px",
-							height: "auto",
-							marginBottom: "20px",
-							border: "1px solid #ccc",
-							borderRadius: "5px",
-						}}
+						className="uploaded-preview"
 					/>
 				)}
 			</div>
